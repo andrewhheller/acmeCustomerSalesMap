@@ -23,7 +23,7 @@ function generateCustomerSalesMap(sales, customers) {
 
   const combinerTotalWrapper = (id) => {
 
-    const combinerTotal = (acc, ele, idx) => {
+    const combinerTotal = (acc, ele) => {
       if(ele.customerId === id) {
         acc += ele.total;
       }
@@ -35,7 +35,7 @@ function generateCustomerSalesMap(sales, customers) {
   }
 
   // combiner function for reduce
-  const combinerCustomerSalesMap = (acc, ele, idx) => {
+  const combinerCustomerSalesMap = (acc, ele) => {
 
     const customerId = ele.id;
 
