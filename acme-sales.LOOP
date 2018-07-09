@@ -1,0 +1,42 @@
+function generateCustomerSalesMap(sales, customers) {
+
+  // ### higher-order function ###, will take in customer id, and return
+  // the total of all orders with that customer ID
+  const combinerTotalWrapper = (id) => {
+
+    // reduce combiner cb function
+    // as it looks at each element in sales, sees if id in sales = id in customers
+    const combinerTotal = (acc, ele) => {
+
+      // if it matches, add total to starting accumulator of 0
+      if(ele.customerId === id) {
+        acc += ele.total;
+      }
+
+      // return acc value
+      return acc;
+    }
+
+    // return total amount reduced on sales array
+    return sales.reduce(combinerTotal, 0);
+  }
+
+  // create object to hodl mapping of each customer to their respective total sales
+  const customerSalesMap = {};
+
+  // loop through customers array
+  for (let i = 0; i < customers.length; i++) {
+
+    // temp variable to hold each customer object
+    const customer = customers[i];
+
+    // create key/value pair where key is customer name and value is reduced fn value
+    // from combinerWrapper higher-order fn above
+    customerSalesMap[customer.name] = combinerTotalWrapper(customer.id);
+  }
+
+  // return populated customer sales map
+  return customerSalesMap;
+}
+  
+generateCustomerSalesMap(sales, customers);
