@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const sinon = require('sinon');
 
-const generateCustomerSalesMap = require('../acmesales');
+const generateCustomerSalesMap = require('../acmesales.js');
 
 describe('acme sales: generate customer sales map', () => {
 
@@ -11,7 +11,7 @@ describe('acme sales: generate customer sales map', () => {
 
   let result;
 
-  let customerTotal;
+  let allCustomerNames;
 
   beforeEach(() => {
 
@@ -38,7 +38,7 @@ describe('acme sales: generate customer sales map', () => {
 
     result = generateCustomerSalesMap(salesTest, customersTest);
 
-    customerTotal = Object.keys(result).length;
+    allCustomerNames = Object.keys(result).length;
 
   })
 
@@ -52,7 +52,7 @@ describe('acme sales: generate customer sales map', () => {
 
   it('returns the correct amount of customers', () => {
     let customerSalesMapTotal = Object.keys(result).length;
-    expect(customerSalesMapTotal).to.equal(customerTotal);
+    expect(customerSalesMapTotal).to.equal(allCustomerNames);
   });
 
   it('generates the correct order total for each customer', () => {
